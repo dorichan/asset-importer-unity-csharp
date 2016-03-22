@@ -21,8 +21,14 @@ So, what is required:
 - (medium priortity) need to check code for handling errors and null references.
 - (high priority) need to write Unity-side code to handle applying assets to a scene and building asset bundles.
 
-### PROBLEMS (as of 2016 March 22 : Dori C.)
-- UI looks ugly on OS X (as outlined above in TODO section).
+### ISSUES 
+[Selecting the correct Unity application path on a Mac]
+- When selecting the Unity application path on OS X, the /Applications/ folder will be the initial directory. The correct
+  path is: /Applications/Unity.app/Contents/MacOS/Unity
+
+[Hard coding the Unity and Unity project applications in future push]
+- The majority of the import and asset bundle creation code will be on an AWS Server and web app. This code will need to be
+  translated and moved.
 
 ### CONTACT 
 Dori Chan : doric@moback.com
