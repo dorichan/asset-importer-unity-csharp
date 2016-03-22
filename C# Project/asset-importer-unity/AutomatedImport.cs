@@ -1,43 +1,31 @@
 ﻿using System;
-using System.IO;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
-namespace FBXImport
+namespace AREN
 {
-    public class AutomatedImport
-    {
+	public class AutomatedImport
+	{
+		const string unityAssetRootPath = "/Assets/";
 		string unityApplicationPath = null;
 		string assetPath = null;
 		string projectPath = null;
 
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        public static void Main()
-        {
-			AutomatedImport nProgram = new AutomatedImport ();
-			nProgram.QueryUsers ();
-        }
-
 		/// <summary>
 		/// Queries the user for the required paths. Also, moves the asset into the selected Unity project.
 		/// </summary>
-		private void QueryUsers()
+		public void QueryUsers ()
 		{
 			unityApplicationPath = GetUnityPath ();
-			assetPath = GetAssetPath();
-			projectPath = GetProjectPath();
+			assetPath = GetAssetPath ();
+			projectPath = GetProjectPath ();
 
 			if (unityApplicationPath != null && assetPath != null && projectPath != null) { 
 				// Move the asset folder into the Unity project and reset the assetPath to the new path in the Unity project.
-				Directory.Move (assetPath, projectPath + "/Assets/" + Path.GetFileName (assetPath));
-				Console.WriteLine (projectPath + "/Assets/" + Path.GetFileName (assetPath));
-				assetPath = projectPath + "/Assets/" + Path.GetFileName (assetPath);
+				Directory.Move (assetPath, projectPath + unityAssetRootPath + Path.GetFileName (assetPath));
+				Console.WriteLine (projectPath + unityAssetRootPath + Path.GetFileName (assetPath));
+				assetPath = projectPath + unityAssetRootPath + Path.GetFileName (assetPath);
 
 				RunImport ();
 			} else {
@@ -48,7 +36,7 @@ namespace FBXImport
 		/// <summary>
 		/// Gets the path to the Unity application on the users computer.
 		/// </summary>
-		private string GetUnityPath()
+		private static string GetUnityPath ()
 		{
 			OpenFileDialog path = new OpenFileDialog ();
 			path.Title = "Select Unity Application";
@@ -67,21 +55,8 @@ namespace FBXImport
 		/// <summary>
 		/// Gets the path to the asset that needs to be imported and converted.
 		/// </summary>
-		private string GetAssetPath()
+		private static string GetAssetPath ()
 		{
-//			OpenFileDialog path = new OpenFileDialog ();
-//			path.Title = "Select FBX file";
-//			path.InitialDirectory = "C:\\";
-//			path.RestoreDirectory = true;
-//			// Allow the user to select multiple assets to import and convert.
-//			path.Multiselect = true;
-//
-//			if (path.ShowDialog () == DialogResult.OK) { 
-//				return path.FileName;
-//			} else {
-//				return null;
-//			}
-
 			FolderBrowserDialog aPath = new FolderBrowserDialog ();
 			aPath.Description = "Select the Asset Folder";
 			aPath.ShowNewFolderButton = false;
@@ -98,7 +73,7 @@ namespace FBXImport
 		/// Requires that a Unity project already exists that is prepared to convert assets into asset bundles.
 		/// Suggested File Name: fbx-import-project. Requres: ImportFBX script in Editor folder.
 		/// </summary>
-		private string GetProjectPath()
+		private static string GetProjectPath ()
 		{
 			FolderBrowserDialog selectedFolder = new FolderBrowserDialog ();
 			selectedFolder.Description = "Select the Unity Project";
@@ -114,17 +89,18 @@ namespace FBXImport
 		/// <summary>
 		/// Runs the code necessary to import the assets into Unity and prepares them for conversion to asset bundles.
 		/// </summary>
-		private void RunImport()
+		private void RunImport ()
 		{
-			var process = new Process();
-			var startInfo = new ProcessStartInfo();
+			var process = new Process ();
+			var startInfo = new ProcessStartInfo ();
 
 			startInfo.WindowStyle = ProcessWindowStyle.Hidden;
 			startInfo.FileName = unityApplicationPath;
 
-			startInfo.Arguments =  "-projectPath " + projectPath + " -executeMethod ImportFBX.Import " + assetPath;
+			startInfo.Arguments = string.Format ("-projectPath {0} -executeMethod Import.HandleFiles {1}", projectPath, assetPath);
 			process.StartInfo = startInfo;
-			process.Start();
+			process.Start ();
 		}
-    }
+	}
 }
+
