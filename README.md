@@ -11,21 +11,18 @@ necessary for converstion to asset bundles.
 
 So, what is required: 
 
-- folder clearly labeled by the user that contains all art assets
-- the paths of the Unity application and the Unity project being used for import, the folder containing the art assets
+- folder clearly labeled by the user that contains all assets
+- the paths of the Unity application and the Unity project being used for import, the folder containing the assets
 - the Unity project must have the scripts written for applying the assets to a scene and then creating an asset bundle
 
 ### TODO (as of 2016 March 22 : Dori C.)
 
-- need to write in MacOS specific code. Currently, the file and folder open dialog code doesn't mesh well with Mac, resulting
-in hard-to-navigate UI. 
-- only opens folders. Need to write in code to handle single objects like individual FBX and OBJ files.
-- need to check code for handling errors and null references.
-- need to write Unity-side code to handle applying assets to a scene and building asset bundles.
+- (low priority) need to write in MacOS specific code. Currently, the file and folder open dialog code doesn't mesh well with Mac, resulting in hard-to-navigate UI.
+- (medium priortity) need to check code for handling errors and null references.
+- (high priority) need to write Unity-side code to handle applying assets to a scene and building asset bundles.
 
 ### PROBLEMS (as of 2016 March 22 : Dori C.)
-- the macOS UI problem outlined above (in TODO section)
+- UI looks ugly on OS X (as outlined above in TODO section).
 
 ### CONTACT 
-Dori Chan 
-doric@moback.com
+Dori Chan : doric@moback.com
