@@ -24,7 +24,6 @@ namespace AREN
 			if (unityApplicationPath != null && assetPath != null && projectPath != null) { 
 				// Move the asset folder into the Unity project and reset the assetPath to the new path in the Unity project.
 				Directory.Move (assetPath, projectPath + unityAssetRootPath + Path.GetFileName (assetPath));
-				Console.WriteLine (projectPath + unityAssetRootPath + Path.GetFileName (assetPath));
 				assetPath = projectPath + unityAssetRootPath + Path.GetFileName (assetPath);
 
 				RunImport ();
@@ -40,11 +39,15 @@ namespace AREN
 		{
 			OpenFileDialog path = new OpenFileDialog ();
 			path.Title = "Select Unity Application";
-			path.InitialDirectory = "C:\\";
 			path.RestoreDirectory = true;
-			// Do not allow multi-select.
 			path.Multiselect = false;
 
+			if (Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix) {
+				path.InitialDirectory = "/Applications/";
+			} else {
+				path.InitialDirectory = "C:\\";
+			}
+				
 			if (path.ShowDialog () == DialogResult.OK) {
 				return path.FileName;
 			} else {
@@ -91,16 +94,15 @@ namespace AREN
 		/// </summary>
 		private void RunImport ()
 		{
-			var process = new Process ();
-			var startInfo = new ProcessStartInfo ();
+			Process process = new Process ();
+			ProcessStartInfo startInfo = new ProcessStartInfo ();
 
-			startInfo.WindowStyle = ProcessWindowStyle.Hidden;
 			startInfo.FileName = unityApplicationPath;
-
+			startInfo.WindowStyle = ProcessWindowStyle.Hidden;
 			startInfo.Arguments = string.Format ("-projectPath {0} -executeMethod Import.HandleFiles {1}", projectPath, assetPath);
 			process.StartInfo = startInfo;
 			process.Start ();
 		}
 	}
 }
-
+	

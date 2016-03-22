@@ -1,4 +1,4 @@
-# asset-importer-unity
+# asset-importer-unity-csharp
 
 IDE: Xamarin Studio 5.10.3 / Language: C# / OSX and Windows
 
@@ -17,12 +17,35 @@ So, what is required:
 
 ### TODO (as of 2016 March 22 : Dori C.)
 
-- (low priority) need to write in MacOS specific code. Currently, the file and folder open dialog code doesn't mesh well with Mac, resulting in hard-to-navigate UI.
 - (medium priortity) need to check code for handling errors and null references.
 - (high priority) need to write Unity-side code to handle applying assets to a scene and building asset bundles.
 
-### PROBLEMS (as of 2016 March 22 : Dori C.)
-- UI looks ugly on OS X (as outlined above in TODO section).
+### ISSUES 
+**[Selecting the correct Unity application path on a Mac]**
+
+When selecting the Unity application path on OS X, the /Applications/ folder will be the initial directory. The correct path is: 
+
+> /Applications/Unity.app/Contents/MacOS/Unity
+
+**[Hard coding the Unity and Unity project applications in future push]**
+
+The majority of the import and asset bundle creation code will be on an AWS Server and web app. This code will need to be translated and moved.
+
+**[Unable to run program on OS X (System.x missing errors)]**
+
+Ensure that mscorlib.dll is added to the project references: 
+
+  *Step 1:* right-click on the csproj file in the solution window 
+
+  *Step 2:* select 'Edit References' 
+  
+  *Step 3:* go to '.Net Packages' 
+  
+  *Step 4:* click 'Browse' and navigate to the following location:
+  
+> /Library/Frameworks/Mono.framework/Versions/4.2.3/lib/mono/4.5/mscorlib.dll
 
 ### CONTACT 
 Dori Chan : doric@moback.com
+
+:metal: :metal:
