@@ -7,24 +7,15 @@ namespace AREN
 {
 	public class AutomatedImport
 	{
+		const string unityAssetRootPath = "/Assets/";
 		string unityApplicationPath = null;
 		string assetPath = null;
 		string projectPath = null;
 
 		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
-		[STAThread]
-		public static void Main ()
-		{
-			AutomatedImport nProgram = new AutomatedImport ();
-			nProgram.QueryUsers ();
-		}
-
-		/// <summary>
 		/// Queries the user for the required paths. Also, moves the asset into the selected Unity project.
 		/// </summary>
-		private void QueryUsers ()
+		public void QueryUsers ()
 		{
 			unityApplicationPath = GetUnityPath ();
 			assetPath = GetAssetPath ();
@@ -32,9 +23,9 @@ namespace AREN
 
 			if (unityApplicationPath != null && assetPath != null && projectPath != null) { 
 				// Move the asset folder into the Unity project and reset the assetPath to the new path in the Unity project.
-				Directory.Move (assetPath, projectPath + "/Assets/" + Path.GetFileName (assetPath));
-				Console.WriteLine (projectPath + "/Assets/" + Path.GetFileName (assetPath));
-				assetPath = projectPath + "/Assets/" + Path.GetFileName (assetPath);
+				Directory.Move (assetPath, projectPath + unityAssetRootPath + Path.GetFileName (assetPath));
+				Console.WriteLine (projectPath + unityAssetRootPath + Path.GetFileName (assetPath));
+				assetPath = projectPath + unityAssetRootPath + Path.GetFileName (assetPath);
 
 				RunImport ();
 			} else {
@@ -66,19 +57,6 @@ namespace AREN
 		/// </summary>
 		private static string GetAssetPath ()
 		{
-//			OpenFileDialog path = new OpenFileDialog ();
-//			path.Title = "Select FBX file";
-//			path.InitialDirectory = "C:\\";
-//			path.RestoreDirectory = true;
-//			// Allow the user to select multiple assets to import and convert.
-//			path.Multiselect = true;
-//
-//			if (path.ShowDialog () == DialogResult.OK) { 
-//				return path.FileName;
-//			} else {
-//				return null;
-//			}
-
 			FolderBrowserDialog aPath = new FolderBrowserDialog ();
 			aPath.Description = "Select the Asset Folder";
 			aPath.ShowNewFolderButton = false;
@@ -88,7 +66,6 @@ namespace AREN
 			} else {
 				return null;
 			}
-
 		}
 
 		/// <summary>
@@ -107,7 +84,6 @@ namespace AREN
 			} else {
 				return null;
 			}
-
 		}
 
 		/// <summary>
@@ -121,9 +97,10 @@ namespace AREN
 			startInfo.WindowStyle = ProcessWindowStyle.Hidden;
 			startInfo.FileName = unityApplicationPath;
 
-			startInfo.Arguments = "-projectPath " + projectPath + " -executeMethod ImportFBX.Import " + assetPath;
+			startInfo.Arguments = string.Format ("-projectPath {0} -executeMethod Import.HandleFiles {1}", projectPath, assetPath);
 			process.StartInfo = startInfo;
 			process.Start ();
 		}
 	}
 }
+

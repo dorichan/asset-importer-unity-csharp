@@ -49,7 +49,6 @@
     <Reference Include="MonoMac, Version=0.0.0.0, Culture=neutral" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutomatedImport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -69,6 +68,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="MainApp.cs" />
+    <Compile Include="AutomatedImport.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
