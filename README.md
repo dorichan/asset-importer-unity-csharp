@@ -29,5 +29,18 @@ So, what is required:
 - The majority of the import and asset bundle creation code will be on an AWS Server and web app. This code will need to be
   translated and moved.
 
+[Unable to run program on OS X (System.x missing errors)]
+- Ensure that mscorlib.dll is added to the project references: 
+
+  (1) right-click on the csproj file in the solution window 
+
+  (2) select 'Edit References' 
+  
+  (3) go to '.Net Packages' 
+  
+  (4) click 'Browse' 
+  
+  (5) navigate to /Library/Frameworks/Mono.framework/Versions/4.2.3/lib/mono/4.5/mscorlib.dll
+
 ### CONTACT 
 Dori Chan : doric@moback.com
