@@ -17,7 +17,6 @@ So, what is required:
 
 ### TODO (as of 2016 March 22 : Dori C.)
 
-- (low priority) need to write in MacOS specific code. Currently, the file and folder open dialog code doesn't mesh well with Mac, resulting in hard-to-navigate UI.
 - (medium priortity) need to check code for handling errors and null references.
 - (high priority) need to write Unity-side code to handle applying assets to a scene and building asset bundles.
 
