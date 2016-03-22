@@ -21,26 +21,30 @@ So, what is required:
 - (high priority) need to write Unity-side code to handle applying assets to a scene and building asset bundles.
 
 ### ISSUES 
-[Selecting the correct Unity application path on a Mac]
-- When selecting the Unity application path on OS X, the /Applications/ folder will be the initial directory. The correct
-  path is: /Applications/Unity.app/Contents/MacOS/Unity
+**[Selecting the correct Unity application path on a Mac]**
+1. When selecting the Unity application path on OS X, the /Applications/ folder will be the initial directory. The correct
+  path is: 
 
-[Hard coding the Unity and Unity project applications in future push]
-- The majority of the import and asset bundle creation code will be on an AWS Server and web app. This code will need to be
+> /Applications/Unity.app/Contents/MacOS/Unity
+
+**[Hard coding the Unity and Unity project applications in future push]**
+2. The majority of the import and asset bundle creation code will be on an AWS Server and web app. This code will need to be
   translated and moved.
 
-[Unable to run program on OS X (System.x missing errors)]
-- Ensure that mscorlib.dll is added to the project references: 
+**[Unable to run program on OS X (System.x missing errors)]**
+3. Ensure that mscorlib.dll is added to the project references: 
 
-  (1) right-click on the csproj file in the solution window 
+  *Step 1:* right-click on the csproj file in the solution window 
 
-  (2) select 'Edit References' 
+  *Step 2:* select 'Edit References' 
   
-  (3) go to '.Net Packages' 
+  *Step 3:* go to '.Net Packages' 
   
-  (4) click 'Browse' 
+  *Step 4:* click 'Browse' and navigate to:
   
-  (5) navigate to /Library/Frameworks/Mono.framework/Versions/4.2.3/lib/mono/4.5/mscorlib.dll
+> /Library/Frameworks/Mono.framework/Versions/4.2.3/lib/mono/4.5/mscorlib.dll
 
 ### CONTACT 
 Dori Chan : doric@moback.com
+
+:metal: :metal:
