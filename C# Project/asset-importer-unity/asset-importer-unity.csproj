@@ -14,12 +14,11 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;&lt;PropertyGroup&gt;&lt;DefineConstants&gt;__MAC__;$(DefineConstants)&lt;/DefineConstants&gt;&lt;/PropertyGroup&gt;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -47,6 +46,7 @@
     <Reference Include="mscorlib">
       <HintPath>..\..\..\..\..\Library\Frameworks\Mono.framework\Versions\4.2.3\lib\mono\4.5\mscorlib.dll</HintPath>
     </Reference>
+    <Reference Include="MonoMac, Version=0.0.0.0, Culture=neutral" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutomatedImport.cs" />
