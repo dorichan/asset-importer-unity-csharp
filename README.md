@@ -45,6 +45,10 @@ Ensure that mscorlib.dll is added to the project references:
   
 > /Library/Frameworks/Mono.framework/Versions/4.2.3/lib/mono/4.5/mscorlib.dll
 
+**[Cannot move directories across volumes on Windows]**
+
+The program will not be able to move files from one volume to another. For example, moving a directory from C:/ drive to E:/ drive will not work. The assets folders have to be in the same volume.
+
 ### CONTACT 
 Dori Chan : doric@moback.com
 
