@@ -38,14 +38,14 @@ namespace AREN
 		private static string GetUnityPath ()
 		{
 			OpenFileDialog path = new OpenFileDialog ();
-			path.Title = "Select Unity Application";
+			path.Title = "Select Your Unity Application";
 			path.RestoreDirectory = true;
 			path.Multiselect = false;
 
 			if (Environment.OSVersion.Platform == PlatformID.MacOSX || Environment.OSVersion.Platform == PlatformID.Unix) {
 				path.InitialDirectory = "/Applications/";
 			} else {
-				path.InitialDirectory = "C:\\";
+				path.InitialDirectory = "/Desktop/";
 			}
 				
 			if (path.ShowDialog () == DialogResult.OK) {
@@ -61,7 +61,7 @@ namespace AREN
 		private static string GetAssetPath ()
 		{
 			FolderBrowserDialog aPath = new FolderBrowserDialog ();
-			aPath.Description = "Select the Asset Folder";
+			aPath.Description = "Select the Asset Folder to Export";
 			aPath.ShowNewFolderButton = false;
 
 			if (aPath.ShowDialog () == DialogResult.OK) {
