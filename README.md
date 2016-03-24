@@ -15,10 +15,17 @@ So, what is required:
 - the paths of the Unity application and the Unity project being used for import, the folder containing the assets
 - the Unity project must have the scripts written for applying the assets to a scene and then creating an asset bundle
 
+### INSTRUCTIONS ###
+
+1. Open the .csproj file and run the program in Xamarin Studio.
+2. You will be prompted to select your Unity application. Select your Unity application. If using Mac, select Unity.app > Contents > MacOS > Unity. Choosing an alias of the Unity app will not work.
+3. You will be prompted to select the folder containing the assets you wish to import. Select the folder.
+4. You will be prompted to select the Unity project containg the necessary Import scripts that will convert the imported files to an asset bundle. Select that project folder. Needs to be the root folder.
+5. The import and asset bundle conversion process will automatically take over and an asset bundle will be created inside of the Unity project at: Unity Project -> Assets -> Asset Bundles.
+
 ### TODO (as of 2016 March 22 : Dori C.)
 
-- (medium priortity) need to check code for handling errors and null references.
-- (high priority) need to write Unity-side code to handle applying assets to a scene and building asset bundles.
+- (low priortity) need to check code for handling errors and null references.
 
 ### ISSUES 
 **[Selecting the correct Unity application path on a Mac]**
