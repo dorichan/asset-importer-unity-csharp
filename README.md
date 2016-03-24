@@ -26,6 +26,7 @@ So, what is required:
 ### TODO (as of 2016 March 22 : Dori C.)
 
 - (low priortity) need to check code for handling errors and null references.
+- (high priority) need to hard code the Unity app, the asset folder, and Unity project paths. In the future, these will no longer need to be chosen by a user.
 
 ### ISSUES 
 **[Selecting the correct Unity application path on a Mac]**
