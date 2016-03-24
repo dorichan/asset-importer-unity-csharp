@@ -29,17 +29,17 @@ So, what is required:
 - (high priority) need to hard code the Unity app, the asset folder, and Unity project paths. In the future, these will no longer need to be chosen by a user.
 
 ### ISSUES 
-**[Selecting the correct Unity application path on a Mac]**
+#####Selecting the correct Unity application path on a Mac#####
 
 When selecting the Unity application path on OS X, the /Applications/ folder will be the initial directory. The correct path is: 
 
 > /Applications/Unity.app/Contents/MacOS/Unity
 
-**[Hard coding the Unity and Unity project applications in future push]**
+#####Hard coding the Unity and Unity project applications in future push#####
 
 The majority of the import and asset bundle creation code will be on an AWS Server and web app. This code will need to be translated and moved.
 
-**[Unable to run program on OS X (System.x missing errors)]**
+#####Unable to run program on OS X (System.x missing errors)#####
 
 Ensure that mscorlib.dll is added to the project references: 
 
@@ -53,7 +53,7 @@ Ensure that mscorlib.dll is added to the project references:
   
 > /Library/Frameworks/Mono.framework/Versions/4.2.3/lib/mono/4.5/mscorlib.dll
 
-**[Cannot move directories across volumes on Windows]**
+#####Cannot move directories across volumes on Windows#####
 
 The program will not be able to move files from one volume to another. For example, moving a directory from C:/ drive to E:/ drive will not work. The assets folders have to be in the same volume.
 
