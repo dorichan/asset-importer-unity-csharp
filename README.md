@@ -23,7 +23,7 @@ So, what is required:
 4. You will be prompted to select the Unity project containg the necessary Import scripts that will convert the imported files to an asset bundle. Select that project folder. Needs to be the root folder.
 5. The import and asset bundle conversion process will automatically take over and an asset bundle will be created inside of the Unity project at: Unity Project -> Assets -> Asset Bundles.
 
-### TODO (as of 2016 March 22 : Dori C.)
+### TODO (as of 2016 March 24 : Dori C.)
 
 - (low priortity) need to check code for handling errors and null references.
 - (high priority) need to hard code the Unity app, the asset folder, and Unity project paths. In the future, these will no longer need to be chosen by a user.
