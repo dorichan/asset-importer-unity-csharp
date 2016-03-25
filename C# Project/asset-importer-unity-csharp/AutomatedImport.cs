@@ -72,7 +72,6 @@ namespace AREN
 			}
 				
 			if (path.ShowDialog () == DialogResult.OK) {
-				Console.WriteLine (path.FileName);
 				return path.FileName;
 			} else {
 				return null;
