@@ -9,8 +9,8 @@ namespace AREN
 	{
 		const string unityAssetRootPath = "/Assets/";
 		const string hard_unityApplicationPath = "C:/Program Files/Unity/Editor/Unity.exe";
-		const string hard_assetPath = "C:/Users/Administrator/Desktop";
-		const string hard_projectPath = "C:/Users/Administrator/Desktop/aren/AREN-Unity-AutoImporter";
+		const string hard_assetPath = "C:/Users/Administrator/Desktop/Imported";
+		const string hard_projectPath = "C:/Users/Administrator/Desktop/AREN-Unity-AutoImporter";
 		string unityApplicationPath = null;
 		string assetPath = null;
 		string projectPath = null;
@@ -34,8 +34,20 @@ namespace AREN
 
 			if (unityApplicationPath != null && assetPath != null && projectPath != null) { 
 				// Move the asset folder into the Unity project and reset the assetPath to the new path in the Unity project.
-				Directory.Move (assetPath, projectPath + unityAssetRootPath + Path.GetFileName (assetPath));
-				assetPath = projectPath + unityAssetRootPath + Path.GetFileName (assetPath);
+				if (!onRemoteMachine) {
+					Directory.Move (assetPath, projectPath + unityAssetRootPath + Path.GetFileName (assetPath));
+					assetPath = projectPath + unityAssetRootPath + Path.GetFileName (assetPath);
+				} else {
+					string[] subDirectory = Directory.GetDirectories (assetPath);
+
+					if (subDirectory.Length > 0) {
+						assetPath = subDirectory [subDirectory.Length - 1];
+						Directory.Move (assetPath, projectPath + unityAssetRootPath + Path.GetFileName (assetPath));
+						assetPath = projectPath + unityAssetRootPath + Path.GetFileName (assetPath);
+					} else {
+						MessageBox.Show ("Error: Asset directory could not be found.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					}
+				}
 
 				RunImport ();
 			} else {
@@ -60,6 +72,7 @@ namespace AREN
 			}
 				
 			if (path.ShowDialog () == DialogResult.OK) {
+				Console.WriteLine (path.FileName);
 				return path.FileName;
 			} else {
 				return null;
@@ -110,7 +123,7 @@ namespace AREN
 
 			startInfo.FileName = unityApplicationPath;
 			startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-			startInfo.Arguments = string.Format ("-projectPath {0} -quit -batchmode -nographics -executeMethod Import.HandleFiles {1}", projectPath, assetPath);
+			startInfo.Arguments = string.Format ("-projectPath {0} -quit -batchmode -executeMethod Import.HandleFiles {1}", projectPath, assetPath);
 			process.StartInfo = startInfo;
 			process.Start ();
 		}
