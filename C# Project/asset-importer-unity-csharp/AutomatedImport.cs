@@ -8,18 +8,29 @@ namespace AREN
 	public class AutomatedImport
 	{
 		const string unityAssetRootPath = "/Assets/";
+		const string hard_unityApplicationPath = "C:/Program Files/Unity/Editor/Unity.exe";
+		const string hard_assetPath = "C:/Users/Administrator/Desktop";
+		const string hard_projectPath = "C:/Users/Administrator/Desktop/aren/AREN-Unity-AutoImporter";
 		string unityApplicationPath = null;
 		string assetPath = null;
 		string projectPath = null;
+
+		private bool onRemoteMachine = true;
 
 		/// <summary>
 		/// Queries the user for the required paths. Also, moves the asset into the selected Unity project.
 		/// </summary>
 		public void QueryUsers ()
 		{
-			unityApplicationPath = GetUnityPath ();
-			assetPath = GetAssetPath ();
-			projectPath = GetProjectPath ();
+			if (!onRemoteMachine) {
+				unityApplicationPath = GetUnityPath ();
+				assetPath = GetAssetPath ();
+				projectPath = GetProjectPath ();
+			} else {
+				unityApplicationPath = hard_unityApplicationPath;
+				assetPath = hard_assetPath;
+				projectPath = hard_projectPath;
+			}
 
 			if (unityApplicationPath != null && assetPath != null && projectPath != null) { 
 				// Move the asset folder into the Unity project and reset the assetPath to the new path in the Unity project.
