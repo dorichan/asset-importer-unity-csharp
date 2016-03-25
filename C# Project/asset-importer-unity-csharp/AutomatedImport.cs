@@ -99,7 +99,7 @@ namespace AREN
 
 			startInfo.FileName = unityApplicationPath;
 			startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-			startInfo.Arguments = string.Format ("-projectPath {0} -executeMethod Import.HandleFiles {1}", projectPath, assetPath);
+			startInfo.Arguments = string.Format ("-projectPath {0} -quit -batchmode -nographics -executeMethod Import.HandleFiles {1}", projectPath, assetPath);
 			process.StartInfo = startInfo;
 			process.Start ();
 		}
