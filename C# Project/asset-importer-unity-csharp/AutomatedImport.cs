@@ -15,6 +15,7 @@ namespace AREN
 		string assetPath = null;
 		string projectPath = null;
 
+		// NOTE : (Dori C.) Set to false for testing. Set to true for production.
 		private bool onRemoteMachine = true;
 
 		/// <summary>
