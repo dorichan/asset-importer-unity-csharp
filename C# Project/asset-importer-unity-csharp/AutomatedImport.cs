@@ -15,6 +15,7 @@ namespace AREN
 		string assetPath = null;
 		string projectPath = null;
 
+		// NOTE : (Dori C.) Set to false for testing. Set to true for production.
 		private bool onRemoteMachine = true;
 
 		/// <summary>
@@ -122,7 +123,7 @@ namespace AREN
 
 			startInfo.FileName = unityApplicationPath;
 			startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-			startInfo.Arguments = string.Format ("-projectPath {0} -quit -batchmode -executeMethod Import.HandleFiles {1}", projectPath, assetPath);
+			startInfo.Arguments = string.Format ("-projectPath {0} -quit -batchmode -executeMethod AREN.Import.HandleFiles {1}", projectPath, assetPath);
 			process.StartInfo = startInfo;
 			process.Start ();
 		}
